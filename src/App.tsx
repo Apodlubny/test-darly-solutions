@@ -32,7 +32,7 @@ function App() {
     <Container sx={{ padding: "20px" }}>
       <Tooltip enterDelay={500} leaveDelay={200} title="Add">
         <Button
-          style={{ backgroundColor: "#6babc3" }}
+          style={{ backgroundColor: "#6babc3", display: "flex" }}
           variant="contained"
           onClick={() => setShowForm((prev) => !prev)}
           sx={{ margin: "20px auto" }}

@@ -23,10 +23,10 @@ const UsersTable: React.FC<Props> = ({ users, loading }) => {
         >
           <TableHead>
             <TableRow style={{ backgroundColor: "#6babc3" }}>
-              <TableCell>Name</TableCell>
-              <TableCell align="center">phone</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Phone</TableCell>
               <TableCell align="center">Email</TableCell>
-              <TableCell align="center">address</TableCell>
+              <TableCell align="center">Address</TableCell>
               <TableCell align="center">Country</TableCell>
             </TableRow>
           </TableHead>

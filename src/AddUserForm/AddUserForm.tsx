@@ -42,7 +42,7 @@ const AddUserForm: React.FC<Props> = ({ hidden, hide, addUser }) => {
   const submitHandler = () => {
     let hasErrors = false;
     const validPhone = /^(?:[0-9] ?){6,14}[0-9]$/;
-    const onlyLetters = /^[a-zA-Z]+$/;
+
     const validEmail =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -50,12 +50,6 @@ const AddUserForm: React.FC<Props> = ({ hidden, hide, addUser }) => {
       setErrors((prev) => ({
         ...prev,
         name: "Put more than 3 and less than 30 characters",
-      }));
-      hasErrors = true;
-    } else if (!userData.name.match(onlyLetters)) {
-      setErrors((prev) => ({
-        ...prev,
-        name: "Name should consist of only letters, no spacing",
       }));
       hasErrors = true;
     }

@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export const BASE_URL = "http://localhost:3030/users/";
 
 export const getAllUsers = () => {
@@ -11,7 +13,7 @@ export const addUser = (userData: UserData) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id: Number(new Date()),
+      id: nanoid(),
       name: userData.name,
       phone: userData.phone,
       email: userData.email,
