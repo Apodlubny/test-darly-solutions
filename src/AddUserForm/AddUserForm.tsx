@@ -95,6 +95,7 @@ const AddUserForm: React.FC<Props> = ({ hidden, hide, addUser }) => {
       address: "",
       country: "",
     });
+    closeFormHandler();
   };
 
   const closeFormHandler = () => {
