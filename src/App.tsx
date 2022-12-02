@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useCallback } from "react";
+import { addUser, getAllUsers } from "../src/api";
+import AddUserForm from "./AddUserForm/AddUserForm";
+import UsersTableNew from "./UsersTable/UsersTable";
+
+import { Button, Container, Tooltip } from "@mui/material";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 function App() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    getAllUsers().then((res) => setUsers(res));
+  }, []);
+
+  const hideForm = useCallback(() => {
+    setShowForm(false);
+  }, []);
+
+  const addUserHandler = (userData: UserData) => {
+    setLoading(true);
+    addUser(userData).then(() => {
+      getAllUsers().then((res) => setUsers(res));
+      setShowForm(false);
+      setLoading(false);
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Container sx={{ padding: "20px" }}>
+      <Tooltip enterDelay={500} leaveDelay={200} title="Add">
+        <Button
+          style={{ backgroundColor: "#6babc3" }}
+          variant="contained"
+          onClick={() => setShowForm((prev) => !prev)}
+          sx={{ margin: "20px auto" }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <AiOutlineUserAdd size={20} fill="white" />
+          Add new user
+        </Button>
+      </Tooltip>
+      <UsersTableNew users={users} loading={loading} />
+
+      <AddUserForm
+        hidden={!showForm}
+        hide={hideForm}
+        addUser={addUserHandler}
+      />
+    </Container>
   );
 }
 
